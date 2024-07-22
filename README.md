@@ -22,7 +22,7 @@ This script automates the process of logging into a Growtopia Google account usi
 1. Clone the repository:
     ```sh
     git clone https://github.com/BarisSenel/selenium-growtopia-login.git
-    cd gmail-login-script
+    cd selenium-growtopia-login
     ```
 
 2. Install the required Python packages:

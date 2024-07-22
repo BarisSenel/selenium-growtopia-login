@@ -1,4 +1,4 @@
-# Gmail Login Script
+# Growtopia Google Login Script
 
 This script automates the process of logging into a Growtopia Google account using Selenium and undetected-chromedriver. It includes CAPTCHA verification handling and token extraction for further processing.
 

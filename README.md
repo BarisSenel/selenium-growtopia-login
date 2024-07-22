@@ -16,6 +16,7 @@ This script automates the process of logging into a Growtopia Google account usi
 - [undetected-chromedriver](https://pypi.org/project/undetected-chromedriver/)
 - [fake-useragent](https://pypi.org/project/fake-useragent/)
 - [requests](https://pypi.org/project/requests/)
+- [bs4](https://pypi.org/project/beautifulsoup4/)
 
 ## Installation
 
@@ -27,7 +28,7 @@ This script automates the process of logging into a Growtopia Google account usi
 
 2. Install the required Python packages:
     ```sh
-    pip install selenium undetected-chromedriver fake-useragent requests
+    pip install selenium undetected-chromedriver fake-useragent requests beautifulsoup4
     ```
 
 3. Download the CapSolver extension and place it in the project directory. Ensure the folder name is `Capsolver`.

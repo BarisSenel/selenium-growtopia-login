@@ -159,7 +159,14 @@ def handle_post_login(driver):
 def main(proxy, email, password, recovery_mail):
     post_body = getLoginUrl.percent_encode()
     login_link = getLoginUrl.getUrl(post_body)
+    print(f"Generated login link: {login_link}")  # Debugging statement
 
+    while login_link is None:
+        print("Error: The login link was not generated.")
+        post_body = getLoginUrl.percent_encode()
+        login_link = getLoginUrl.getUrl(post_body)
+        print(f"Generated login link: {login_link}")  # Debugging statement
+        
     driver = init_driver(proxy)
     driver.get(login_link)
 

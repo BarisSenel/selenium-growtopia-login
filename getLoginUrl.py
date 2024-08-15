@@ -1,11 +1,10 @@
-# getLoginUrl.py
-# This getLoginUrl.py made by GorkemOktay
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import random
 import string
 import urllib3
+import re
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def random_int(min, max):
@@ -33,6 +32,32 @@ def generate_random_hex(length):
     hex_characters = string.hexdigits[:-6]
     random_hex = ''.join(random.choice(hex_characters) for _ in range(length))
     return random_hex.upper()
+
+
+def get_meta():
+    url = "https://www.growtopia1.com/growtopia/server_data.php"
+    headers = {
+        "Host": "www.growtopia1.com",
+        "User-Agent": "UbiServices_SDK_2022.Release.9_PC64_ansi_static",
+        "Accept": "*/*",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Cache-Control": "no-cache",
+        "Content-Length": "36"
+    }
+    data = "version=4.63&platform=0&protocol=209"
+
+    response = requests.post(url, headers=headers, data=data, verify=False)
+    if response.status_code == 200:
+        content = response.content.decode('utf-8')
+        # Use regex to find the meta value
+        match = re.search(r'meta\|([^ \n\r]+)', content)
+        if match:
+            return match.group(1)
+        else:
+            return "Meta value not found"
+    else:
+        return "Failed to retrieve data"
+
 
 country_codes = [
     'ad', 'ae', 'af', 'ag', 'ai', 'al', 'am', 'an', 'ao', 'ar', 'as', 'at', 'au', 'aw', 'ax', 'az', 'ba', 'bb', 'bd', 'be', 'bf',
@@ -87,23 +112,25 @@ special_characters = {
 }
 
 def percent_encode():
+    meta = get_meta()
+    print(meta)
     input_string = f"""
         tankIDName|
         tankIDPass|
-        requestedName|dave
-        f|0
-        protocol|208
-        game_version|4.62
-        fz|47142936
+        requestedName|{generate_random_number(5)}
+        f|1
+        protocol|209
+        game_version|4.63
+        fz|40875032
         lmode|0
-        cbits|0
-        player_age|24
-        GDPR|1
-        category|wotd_world
+        cbits|1024
+        player_age|22
+        GDPR|2
+        category|_0
         totalPlaytime|0
-        klv|84f72934dea733ae248ee48834e81cde745037122c3ddbc719e6957ff300fd75
+        klv|ca32cee4050b05db7b771777468e7d3d7d1dabc58f6c55a2423cf8c77d979f52
         hash2|-{generate_random_number(9)}
-        meta|voNt/bFcL6DY9z5ZJlbgszcR1P1w+TUdTo5O1bywiPc=
+        meta|{meta}
         fhash|-716928004
         rid|{generate_rid()}
         platformID|0,1,1
@@ -112,7 +139,7 @@ def percent_encode():
         hash|-{generate_random_number(10)}
         mac|{generate_random_mac_address()}
         wk|{generate_random_hex(32)}
-        zf|-821693372
+        zf|283949556
     """.strip()
     encoded_string = ""
     for char in input_string:
@@ -123,13 +150,13 @@ def percent_encode():
     return encoded_string
 
 def getUrl(post_body):
-    url = "https://login.growtopiagame.com/player/login/dashboard"
+    url = "https://login.growtopiagame.com/player/login/dashboard?valKey=40db4045f2d8c572efe8c4a060605726"
     user_agent = UserAgent().chrome
     headers = {
         "Host": "login.growtopiagame.com",
         "Connection": "keep-alive",
         "Cache-Control": "max-age=0",
-        "sec-ch-ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Microsoft Edge";v="126", "Microsoft Edge WebView2";v="126"',
+        "sec-ch-ua": '"Not/A)Brand";v="99", "Chromium";v="127", "Microsoft Edge";v="127", "Microsoft Edge WebView2";v="127"',
         "sec-ch-ua-mobile": "?0",
         "sec-ch-ua-platform": "Windows",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -143,7 +170,7 @@ def getUrl(post_body):
         "Sec-Fetch-Dest": "document",
         "Accept-Language": "en-US,en;q=0.9",
         "Accept-Encoding": "gzip, deflate",
-        "Content-Length": "619"
+        "Content-Length": "607"
     }
 
 
@@ -154,6 +181,5 @@ def getUrl(post_body):
     google_button = soup.find('a', {'class': 'btn btn-block', 'href': lambda x: x and 'google' in x})
     if google_button:
         google_link = google_button['href']
-        print(google_link)
         return google_link
     return None

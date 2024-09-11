@@ -119,20 +119,20 @@ def percent_encode():
         tankIDPass|
         requestedName|{generate_random_number(5)}
         f|1
-        protocol|209
-        game_version|4.63
-        fz|40875032
+        protocol|210
+        game_version|4.64
+        fz|22745624
         lmode|0
         cbits|1024
         player_age|22
         GDPR|2
-        category|_0
+        category|_-5000
         totalPlaytime|0
-        klv|ca32cee4050b05db7b771777468e7d3d7d1dabc58f6c55a2423cf8c77d979f52
+        klv|d5b6a4db4c447f27ea82d5b1f88bee159346933659f635be5fe0b028c53408af
         hash2|-{generate_random_number(9)}
         meta|{meta}
         fhash|-716928004
-        rid|{generate_rid()}
+        rid|D50B04D059FE95BAAE390570F7866AD4
         platformID|0,1,1
         deviceVersion|0
         country|{random.choice(country_codes)}
@@ -156,12 +156,12 @@ def getUrl(post_body):
         "Host": "login.growtopiagame.com",
         "Connection": "keep-alive",
         "Cache-Control": "max-age=0",
-        "sec-ch-ua": '"Not/A)Brand";v="99", "Chromium";v="127", "Microsoft Edge";v="127", "Microsoft Edge WebView2";v="127"',
+        "sec-ch-ua": '"Chromium";v="128", "Not;A=Brand";v="24", "Microsoft Edge";v="128", "Microsoft Edge WebView2";v="128"',
         "sec-ch-ua-mobile": "?0",
         "sec-ch-ua-platform": "Windows",
         "Content-Type": "application/x-www-form-urlencoded",
         "Upgrade-Insecure-Requests": "1",
-        "User-Agent": user_agent,
+        "User-Agent": user_agent,       
         "Origin": "null",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Sec-Fetch-Site": "none",
@@ -170,7 +170,7 @@ def getUrl(post_body):
         "Sec-Fetch-Dest": "document",
         "Accept-Language": "en-US,en;q=0.9",
         "Accept-Encoding": "gzip, deflate",
-        "Content-Length": "607"
+        "Content-Length": "712"
     }
 
 

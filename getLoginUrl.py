@@ -44,7 +44,7 @@ def get_meta():
         "Cache-Control": "no-cache",
         "Content-Length": "36"
     }
-    data = "version=4.63&platform=0&protocol=209"
+    data = "version=4.72&platform=0&protocol=210"
 
     response = requests.post(url, headers=headers, data=data, verify=False)
     if response.status_code == 200:
